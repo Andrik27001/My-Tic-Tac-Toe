@@ -19,7 +19,11 @@ class GameInterface
     puts '*     Press "Enter" to start!     *'
     puts '*                                 *'
     puts '* * *                         * * *'
-    gets.chomp
+    @enter = gets.chomp
+    until @enter == ''
+      print 'Do not enter any value!'
+      @enter = gets.chomp
+    end
   end
 
   def players
@@ -29,14 +33,10 @@ class GameInterface
     print 'Enter player two: '
     @player_two = gets.chomp.capitalize
     until @player_two != @player_one
-      puts 'Choose a different name please!'
+      print 'Choose a different name please!'
       @player_two = gets.chomp.capitalize
     end
     puts "Player \"#{@player_two}\" plays with O's!", ''
-  end
-
-  def correct_name
-    
   end
 
   def actual_board
@@ -55,13 +55,40 @@ class GameInterface
   end
 
   def who_moves_first
-    puts "#{@player_one} goes first!" if @random_turn.even?
-    puts "#{@player_two} goes first!" if @random_turn.odd?
+    @first_move = @player_one if @random_turn.even?
+    @first_move = @player_two if @random_turn.odd?
+    puts "#{@first_move} goes first!"
   end
 
   def moves
-    puts "Choose a position #{@player_one}"
+    puts "Choose a position #{@first_move}: "
     @chosen_move = gets.chomp
+  end
+
+  def win
+    @winner = @first_move
+    puts "You win #{@winner}"
+  end
+
+  def play_again
+    puts 'Enter "A" to play again'
+    puts 'Enter "E" to exit'
+    @desition = gets.chomp
+    if @desition == 'A'
+      hola = GameInterface.new
+      hola.welcome
+      hola.players
+      hola.actual_board
+      hola.who_moves_first
+      hola.moves
+      hola.win
+      hola.play_again
+    elsif @desition == 'E'
+      puts 'Thank you for playing! :D'
+    else
+      puts 'Enter the correct value please'
+      gets.chomp
+    end
   end
 end
 
@@ -71,3 +98,5 @@ hola.players
 hola.actual_board
 hola.who_moves_first
 hola.moves
+hola.win
+hola.play_again
