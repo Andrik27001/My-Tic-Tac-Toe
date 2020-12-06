@@ -1,3 +1,73 @@
 #!/usr/bin/env ruby
 
-puts 'Hello World!'
+class GameInterface
+  def initialize
+    @random_turn = (rand * 10).to_i
+  end
+
+  def welcome
+    puts '* * *                         * * *'
+    puts '*                                 *'
+    puts '*     Welcome to Tic Tac Toe!     *'
+    puts '                                   '
+    puts '               | X | O             '
+    puts '            ---+---+---            '
+    puts '             O | X | X             '
+    puts '            ---+---+---            '
+    puts '               | O |               '
+    puts '                                   '
+    puts '*     Press "Enter" to start!     *'
+    puts '*                                 *'
+    puts '* * *                         * * *'
+    gets.chomp
+  end
+
+  def players
+    print 'Enter player one: '
+    @player_one = gets.chomp.capitalize
+    puts "Player \"#{@player_one}\" plays with X's!", ''
+    print 'Enter player two: '
+    @player_two = gets.chomp.capitalize
+    until @player_two != @player_one
+      puts 'Choose a different name please!'
+      @player_two = gets.chomp.capitalize
+    end
+    puts "Player \"#{@player_two}\" plays with O's!", ''
+  end
+
+  def correct_name
+    
+  end
+
+  def actual_board
+    puts
+    puts '* *        Actual board:        * *'
+    puts '*                                 *'
+    puts '             1 | 2 | 3             '
+    puts '            ---+---+---            '
+    puts '             4 | 5 | 6             '
+    puts '            ---+---+---            '
+    puts '*            7 | 8 | 9            *'
+    puts '* *                             * *'
+    puts
+    puts 'Available positions: 1 2 3 4 5 6 7 8 9'
+    puts
+  end
+
+  def who_moves_first
+    puts "#{@player_one} goes first!" if @random_turn.even?
+    puts "#{@player_two} goes first!" if @random_turn.odd?
+  end
+
+  def moves
+    puts "Choose a position #{@player_one}"
+    @chosen_move = gets.chomp
+  end
+end
+
+hola = GameInterface.new
+hola.welcome
+hola.players
+hola.actual_board
+hola.who_moves_first
+hola.moves
