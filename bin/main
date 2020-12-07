@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
 class Interface
+  def initialize
+    @random_turn = (rand * 10).to_i
+  end
+
   def welcome
     puts '* * *                         * * *'
     puts '*                                 *'
@@ -47,10 +51,6 @@ class Interface
 end
 
 class GameInterface < Interface
-  def initialize
-    @random_turn = (rand * 10).to_i
-  end
-
   def players
     print 'Enter player one: '
     @player_one = gets.chomp.capitalize
@@ -99,6 +99,8 @@ class GameInterface < Interface
       puts 'Enter the correct value please'
       gets.chomp
     end
+    system 'clear'
+    system 'cls'
   end
 end
 
