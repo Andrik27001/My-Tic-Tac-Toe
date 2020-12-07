@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby
 
-class GameInterface
-  def initialize
-    @random_turn = (rand * 10).to_i
-  end
-
+class Interface
   def welcome
     puts '* * *                         * * *'
     puts '*                                 *'
@@ -21,22 +17,9 @@ class GameInterface
     puts '* * *                         * * *'
     @enter = gets.chomp
     until @enter == ''
-      print 'Do not enter any value!'
+      puts 'Do not enter any value!'
       @enter = gets.chomp
     end
-  end
-
-  def players
-    print 'Enter player one: '
-    @player_one = gets.chomp.capitalize
-    puts "Player \"#{@player_one}\" plays with X's!", ''
-    print 'Enter player two: '
-    @player_two = gets.chomp.capitalize
-    until @player_two != @player_one
-      print 'Choose a different name please!'
-      @player_two = gets.chomp.capitalize
-    end
-    puts "Player \"#{@player_two}\" plays with O's!", ''
   end
 
   def actual_board
@@ -52,6 +35,33 @@ class GameInterface
     puts
     puts 'Available positions: 1 2 3 4 5 6 7 8 9'
     puts
+  end
+
+  def play_again
+    puts '* *                             * *'
+    puts '*     Enter "A" to play again     *'
+    puts '       ---------------------       '
+    puts '*        Enter "E" to exit        *'
+    puts '* *                             * *'
+  end
+end
+
+class GameInterface < Interface
+  def initialize
+    @random_turn = (rand * 10).to_i
+  end
+
+  def players
+    print 'Enter player one: '
+    @player_one = gets.chomp.capitalize
+    puts "Player \"#{@player_one}\" plays with X's!", ''
+    print 'Enter player two: '
+    @player_two = gets.chomp.capitalize
+    until @player_two != @player_one
+      puts 'Choose a different name please!'
+      @player_two = gets.chomp.capitalize
+    end
+    puts "Player \"#{@player_two}\" plays with O's!", ''
   end
 
   def who_moves_first
@@ -70,11 +80,11 @@ class GameInterface
     puts "You win #{@winner}"
   end
 
-  def play_again
-    puts 'Enter "A" to play again'
-    puts 'Enter "E" to exit'
-    @desition = gets.chomp
-    if @desition == 'A'
+  def play_again_logic
+    play_again
+    @desition = gets.chomp.upcase
+    case @desition
+    when 'A'
       hola = GameInterface.new
       hola.welcome
       hola.players
@@ -83,7 +93,7 @@ class GameInterface
       hola.moves
       hola.win
       hola.play_again
-    elsif @desition == 'E'
+    when 'E'
       puts 'Thank you for playing! :D'
     else
       puts 'Enter the correct value please'
@@ -99,4 +109,4 @@ hola.actual_board
 hola.who_moves_first
 hola.moves
 hola.win
-hola.play_again
+hola.play_again_logic
