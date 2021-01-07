@@ -1,50 +1,78 @@
 #!/usr/bin/env ruby
-puts '* * *                         * * *'
-puts '*                                 *'
-puts '*     Welcome to Tic Tac Toe!     *'
-puts '                                   '
-puts '               | X | O             '
-puts '            ---+---+---            '
-puts '             O | X | X             '
-puts '            ---+---+---            '
-puts '               | O |               '
-puts '                                   '
-puts '*     Press "Enter" to start!     *'
-puts '*                                 *'
-puts '* * *                         * * *'
+class Game
+  def initialize
+    @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    @random_turn = (rand * 10).to_i
+  end
 
-puts 'Enter Player 1: '
-player_one = gets.chomp
-puts "Player \"#{player_one}\", plays with X\'s"
-puts 'Enter Player 2: '
-player_two = gets.chomp
-puts "Player \"#{player_two}\", plays with O\'s"
-puts
+  def welcome
+    puts '* * *                         * * *'
+    puts '*                                 *'
+    puts '*     Welcome to Tic Tac Toe!     *'
+    puts '                                   '
+    puts '               | X | O             '
+    puts '            ---+---+---            '
+    puts '             O | X | X             '
+    puts '            ---+---+---            '
+    puts '               | O |               '
+    puts '                                   '
+    puts '*     Press "Enter" to start!     *'
+    puts '*                                 *'
+    puts '* * *                         * * *'
+  end
 
-board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-puts "            #{board[0]} | #{board[1]} | #{board[2]}"
-puts '           ---+---+---'
-puts "            #{board[3]} | #{board[4]} | #{board[5]}"
-puts '           ---+---+---'
-puts "            #{board[6]} | #{board[7]} | #{board[8]}"
+  def players
+    puts 'Enter Player 1: '
+    @player_one = gets.chomp
+    puts "Player \"#{@player_one}\", plays with X\'s"
+    puts 'Enter Player 2: '
+    @player_two = gets.chomp
+    puts "Player \"#{@player_two}\", plays with O\'s"
+    puts
+  end
 
-random_turn = (rand * 10).to_i
-if random_turn.even? && random_turn != 0
-  puts "#{player_one} goes first!"
-  current_player = player_one
-else
-  puts "#{player_two} goes first!"
-  current_player = player_two
+  def display_board
+    puts "            #{@board[0]} | #{@board[1]} | #{@board[2]}"
+    puts '           ---+---+---'
+    puts "            #{@board[3]} | #{@board[4]} | #{@board[5]}"
+    puts '           ---+---+---'
+    puts "            #{@board[6]} | #{@board[7]} | #{@board[8]}"
+  end
+
+  def first_move
+    if @random_turn.even? && @random_turn != 0
+      puts "#{@player_one} goes first!"
+      @current_player = @player_one
+    else
+      puts "#{@player_two} goes first!"
+      @current_player = @player_two
+    end
+  end
+
+  def current_move
+    puts "Choose your move #{@current_player}"
+    move = gets.chomp
+    puts "#{@current_player} choose move #{move}"
+  end
+
+  def win
+    puts "Player #{@current_player} wins!"
+  end
+
+  def play_again
+    puts '* *                             * *'
+    puts '*     Enter "A" to play again     *'
+    puts '       ---------------------       '
+    puts '*        Enter "E" to exit        *'
+    puts '* *                             * *'
+  end
 end
 
-puts "Choose your move #{current_player}"
-move = gets.chomp
-puts "#{current_player} choose move #{move}"
-
-puts "Player #{current_player} wins!"
-
-puts '* *                             * *'
-puts '*     Enter "A" to play again     *'
-puts '       ---------------------       '
-puts '*        Enter "E" to exit        *'
-puts '* *                             * *'
+hola = Game.new
+hola.welcome
+hola.players
+hola.display_board
+hola.first_move
+hola.current_move
+hola.win
+hola.play_again
