@@ -39,7 +39,7 @@ end
 
 puts "Choose your move #{current_player}"
 move = gets.chomp
-puts "#{current_player} choose move #{}"
+puts "#{current_player} choose move #{move}"
 
 puts "Player #{current_player} wins!"
 
