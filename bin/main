@@ -1,78 +1,11 @@
 #!/usr/bin/env ruby
-class Game
+
+class Interface
   def initialize
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     @random_turn = (rand * 10).to_i
-  end
-
-  def welcome
-    puts '* * *                         * * *'
-    puts '*                                 *'
-    puts '*     Welcome to Tic Tac Toe!     *'
-    puts '                                   '
-    puts '               | X | O             '
-    puts '            ---+---+---            '
-    puts '             O | X | X             '
-    puts '            ---+---+---            '
-    puts '               | O |               '
-    puts '                                   '
-    puts '*     Press "Enter" to start!     *'
-    puts '*                                 *'
-    puts '* * *                         * * *'
-  end
-
-  def players
-    puts 'Enter Player 1: '
-    @player_one = gets.chomp
-    puts "Player \"#{@player_one}\", plays with X\'s"
-    puts 'Enter Player 2: '
-    @player_two = gets.chomp
-    puts "Player \"#{@player_two}\", plays with O\'s"
-    puts
-  end
-
-  def display_board
-    puts "            #{@board[0]} | #{@board[1]} | #{@board[2]}"
-    puts '           ---+---+---'
-    puts "            #{@board[3]} | #{@board[4]} | #{@board[5]}"
-    puts '           ---+---+---'
-    puts "            #{@board[6]} | #{@board[7]} | #{@board[8]}"
-  end
-
-  def first_move
-    if @random_turn.even? && @random_turn != 0
-      puts "#{@player_one} goes first!"
-      @current_player = @player_one
-    else
-      puts "#{@player_two} goes first!"
-      @current_player = @player_two
-    end
-  end
-
-  def current_move
-    puts "Choose your move #{@current_player}"
-    move = gets.chomp
-    puts "#{@current_player} choose move #{move}"
-  end
-
-  def win
-    puts "Player #{@current_player} wins!"
-  end
-
-  def play_again
-    puts '* *                             * *'
-    puts '*     Enter "A" to play again     *'
-    puts '       ---------------------       '
-    puts '*        Enter "E" to exit        *'
-    puts '* *                             * *'
+    @turn_counter = 0
+    @win_combinations = [%w[1 2 3], %w[4 5 6], %w[7 8 9], %w[1 4 7], %w[2 5 8], %w[3 6 9], %w[1 5 9], %w[3 5 7]]
+    @winss = false
   end
 end
-
-hola = Game.new
-hola.welcome
-hola.players
-hola.display_board
-hola.first_move
-hola.current_move
-hola.win
-hola.play_again
