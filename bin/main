@@ -32,5 +32,11 @@ class Interface
     puts '       ---------------------       '
     puts '*        Enter "E" to exit        *'
     puts '* *                             * *'
+    pa = gets.chomp.upcase
+    if pa == 'A' 
+      pa = Game.new
+      pa.welcome
+    end
+    puts 'Thanks for playing' if pa == 'E'
   end
 end
