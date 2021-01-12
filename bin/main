@@ -35,9 +35,8 @@ class Interface
     hola = gets.chomp.upcase
     if hola == 'A'
       hola = Game.new
-      hola.welcome 
-
+      hola.welcome
     end
-    puts 'Thanks for playing' if hola == 'E' 
+    puts 'Thanks for playing' if hola == 'E'
   end
 end
