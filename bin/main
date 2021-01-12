@@ -25,4 +25,12 @@ class Interface
     puts '* * *                         * * *'
     puts
   end
+
+  def play_again
+    puts '* *                             * *'
+    puts '*     Enter "A" to play again     *'
+    puts '       ---------------------       '
+    puts '*        Enter "E" to exit        *'
+    puts '* *                             * *'
+  end
 end
