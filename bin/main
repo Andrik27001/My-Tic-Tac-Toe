@@ -39,46 +39,12 @@ class Interface
     end
     puts 'Thanks for playing' if hola == 'E'
   end
-end
-def welcome
-  puts '* * *                         * * *'
-  puts '*                                 *'
-  puts '*     Welcome to Tic Tac Toe!     *'
-  puts '                                   '
-  puts '               | X | O             '
-  puts '            ---+---+---            '
-  puts '             O | X | X             '
-  puts '            ---+---+---            '
-  puts '               | O |               '
-  puts '                                   '
-  puts '*     Press "Enter" to start!     *'
-  puts '*                                 *'
-  puts '* * *                         * * *'
-  puts
-end
-
-def play_again
-  puts '* *                             * *'
-  puts '*     Enter "A" to play again     *'
-  puts '       ---------------------       '
-  puts '*        Enter "E" to exit        *'
-  puts '* *                             * *'
-  pa = gets.chomp.upcase
-  if pa == 'A'
-    pa = Game.new
-    pa.welcome
-    pa.players
-    pa.display_board
-    pa.first_move
-    pa.turns
-  end
-  puts 'Thanks for playing' if pa == 'E'
 
   def display_board
     puts
     puts '* *        Actual board:        * *'
     puts '*                                 *'
-    puts ''             #{board[0]} | #{board[1]} | #{board[2]}             '
+    puts '' # {board[0]} | #{board[1]} | #{board[2]}             '
     puts '            ---+---+---            '
     puts "             #{board[3]} | #{board[4]} | #{board[5]}             "
     puts '            ---+---+---            '
